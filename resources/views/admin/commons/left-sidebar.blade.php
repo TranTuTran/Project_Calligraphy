@@ -97,6 +97,25 @@ use Illuminate\Support\Str; //Đây là lệnh để sử dụng class Str nằm
               </li>
             </ul>
           </li>
+          <li class="nav-item dropdown {{ Str::contains(url()->current(), '/admin/lesson/') ? 'open' : '' }}">
+            <a class="dropdown-toggle" href="javascript:void(0);">
+              <span class="icon-holder">
+                <i class="c-orange-500 ti-layout-list-thumb"></i>
+              </span>
+              <span class="title">Lessons</span>
+              <span class="arrow">
+                <i class="ti-angle-right"></i>
+              </span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class='sidebar-link' href="{{ route('admin.lesson.index') }}">Danh sach lesson</a>
+              </li>
+              <li>
+                <a class='sidebar-link' href="{{ route('admin.lesson.create') }}">Create lesson</a>
+              </li>
+            </ul>
+          </li>
       </ul>
     </div>
   </div>

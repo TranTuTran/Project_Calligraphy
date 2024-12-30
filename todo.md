@@ -1,13 +1,13 @@
 ADMIN:
-- quan ly user
-  + index - DONE
+
+- quan ly user -> DONE
+  + list - DONE
   + create - 50%
   + update
   + change status
 - quan ly quoc tich
-- quan ly the loai
-- quan ly cap do
-- quan ly danh muc
+- quan ly cap do -> DONE
+- quan ly danh muc -> DONE
 - quan ly bai hoc
 - quan ly mang xa hoi
 - dashboard

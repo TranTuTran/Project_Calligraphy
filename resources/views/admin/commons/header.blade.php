@@ -13,7 +13,10 @@
           </a>
         </li>
         <li class="search-input">
-          <input class="form-control" type="text" placeholder="Search...">
+          <form method="GET" action="">
+            <input class="form-control" name="q" type="text" value="{{old('q')}}" placeholder="Search...">
+            <button type="submit" style="display: none">Search</button>
+          </form>
         </li>
       </ul>
       <ul class="nav-right">

@@ -10,18 +10,18 @@ use App\Models\User;
 use Illuminate\Http\Request;
 class UserController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        $users = User::orderBy('id', 'desc')->with(['profile'])->get();
+        $query = User::orderBy('id', 'desc')->with(['profile']);
+        if($request->has('q'))
+        {
+            $query->where('name', 'LIKE', "%{$request->get('q')}%")>orWhere('email', 'LIKE',"%{$request->get('q')}%");
+        }
+        $users = $query->get();
         return view('admin.user.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $nationals = National::all();
@@ -29,9 +29,6 @@ class UserController
         return view('admin.user.create', compact('nationals', 'levels'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(CreateUserRequest $request)
     {
         $user = new User();
@@ -61,17 +58,7 @@ class UserController
         return redirect()->route('admin.user.index')->with('success', 'User created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
@@ -80,9 +67,6 @@ class UserController
         return view('admin.user.edit', compact('user', 'nationals', 'levels'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateUserRequest $request, string $id)
     {
         $user = User::findOrFail($id);
@@ -108,9 +92,7 @@ class UserController
         return redirect()->route('admin.user.index')->with('success', 'User updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
         
@@ -122,9 +104,7 @@ class UserController
         $user->blockUser();
         return redirect()->route('admin.user.index')->with('success', 'User blocked successfully.');
     }
-    /**
-     * Display the specified resource.
-     */
+
     public function unblockUser(string $id)
     {
         $user = User::findOrFail($id);
