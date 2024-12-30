@@ -1,0 +1,50 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "@fullcalendar/core": "^6.1.11",
+        "@fullcalendar/daygrid": "^6.1.11",
+        "@fullcalendar/interaction": "^6.1.11",
+        "@fullcalendar/list": "^6.1.11",
+        "@fullcalendar/timegrid": "^6.1.11",
+        "@popperjs/core": "^2.11.6",
+        "autoprefixer": "^10.4.20",
+        "axios": "^1.7.4",
+        "babel-polyfill": "^6.26.0",
+        "bootstrap": "^5.3.3",
+        "bootstrap-datepicker": "^1.9.0",
+        "brand-colors": "^2.1.1",
+        "chart.js": "^4.4.2",
+        "concurrently": "^9.0.1",
+        "datatables": "^1.10.18",
+        "easy-pie-chart": "^2.1.7",
+        "file-loader": "^6.2.0",
+        "jquery": "^3.6.0",
+        "jquery-sparkline": "^2.4.0",
+        "jvectormap": "^2.0.4",
+        "laravel-vite-plugin": "^1.0",
+        "load-google-maps-api": "^2.0.2",
+        "lodash": "^4.17.21",
+        "masonry-layout": "^4.2.2",
+        "moment": "^2.30.1",
+        "perfect-scrollbar": "^1.5.1",
+        "postcss": "^8.4.47",
+        "skycons": "^1.0.0",
+        "tailwindcss": "^3.4.13",
+        "vite": "^5.0"
+    },
+    "dependencies": {
+        "@vitejs/plugin-react": "^4.3.4",
+        "datatables.net": "^2.1.8",
+        "datatables.net-bs5": "^2.1.8",
+        "datatables.net-dt": "^2.1.8",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-router-dom": "^7.0.2",
+        "sass-embedded": "^1.82.0"
+    }
+}
