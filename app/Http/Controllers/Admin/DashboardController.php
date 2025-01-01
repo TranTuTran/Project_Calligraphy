@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\Category;
+use App\Models\Lesson;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController
@@ -9,9 +11,19 @@ class DashboardController
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.dashboard.index');
+        if ($request->has('q')) {
+            return redirect()->route('admin.user.index', ['q' => $request->get('q')]);//q là tên tham số truy vấn, và giá trị của nó được lấy từ request thông qua $request->get('q').Ví dụ, nếu URL hiện tại là /search?q=test, thì $request->get('q') sẽ trả về giá trị 'test'.
+        }
+
+        $totalUsers = User::count();
+        $totalCategories = Category::count();
+        $totalLessons = Lesson::count();
+        $totalStudents = User::where(['type' => User::TYPE_STUDENT])->count();
+        $totalSocialPosts = 0;
+
+        return view('admin.dashboard.index', compact('totalUsers', 'totalCategories', 'totalLessons', 'totalStudents', 'totalSocialPosts'));
     }
 
     /**

@@ -55,6 +55,9 @@ use Illuminate\Support\Str; //Đây là lệnh để sử dụng class Str nằm
               <a class='sidebar-link' href="{{ route('admin.user.index') }}">Danh sach user</a>
             </li>
             <li>
+              <a class='sidebar-link' href="{{ route('admin.user.index') }}?type=2">Danh sach hoc vien</a> {{-- Ví dụ: nếu route admin.user.index trỏ đến /admin/users, liên kết sẽ là /admin/users?type=2. --}}
+            </li>
+            <li>
               <a class='sidebar-link' href="{{ route('admin.user.create') }}">Create user</a>
             </li>
           </ul>

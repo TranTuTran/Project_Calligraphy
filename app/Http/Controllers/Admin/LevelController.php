@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class LevelController
 {
-    public function index()
+    public function index(Request $request)
     {
-        $levels = Level::orderBy('id','desc')->get();
+        $query = Level::orderBy('id', 'desc');
+        if ($request->has('q')) {
+            $query->where('name', 'LIKE', "%{$request->get('q')}%")
+                ->orWhere('description', 'LIKE', "%{$request->get('q')}%");
+        }
+        $levels = $query->get();
         return view('admin.level.index', compact('levels'));
     }
 

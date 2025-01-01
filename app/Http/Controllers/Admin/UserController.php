@@ -16,8 +16,13 @@ class UserController
         $query = User::orderBy('id', 'desc')->with(['profile']);
         if($request->has('q'))
         {
-            $query->where('name', 'LIKE', "%{$request->get('q')}%")>orWhere('email', 'LIKE',"%{$request->get('q')}%");
+            $query->where('name', 'LIKE', "%{$request->get('q')}%")->orWhere('email', 'LIKE',"%{$request->get('q')}%");
         }
+
+        if ($request->has('type')) {
+            $query->where('type', $request->get('type'));
+        }
+        
         $users = $query->get();
         return view('admin.user.index', compact('users'));
     }

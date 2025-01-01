@@ -1,0 +1,7 @@
+.ck-editor__editable_inline {
+    min-height: 400px; /* Chiều cao tối thiểu */
+    max-height: 600px; /* Chiều cao tối đa (nếu cần) */
+  }
+  #preview {
+    object-fit: cover;
+  }

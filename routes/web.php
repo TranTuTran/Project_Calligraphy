@@ -2,6 +2,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Auth\LoginController;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('admin/login', [LoginController::class, 'loginPage'])->name('admin.login-page');
 Route::post('admin/login', [LoginController::class, 'login'])->name('admin.submit-login');
-Route::get('admin/logout', [Logout::class])->name('admin.logout');
+Route::get('admin/logout', Logout::class)->name('admin.logout');
 
 
 Route::prefix('admin')->name('admin.')->middleware(AdminMiddleware::class)->group(function () {
@@ -56,6 +57,7 @@ Route::prefix('admin')->name('admin.')->middleware(AdminMiddleware::class)->grou
         // Route::get('destroy/{id}', 'destroy')->name('destroy');
     });
 
+
     Route::prefix('lesson')->name('lesson.')->controller(LessonController::class)->group(function () {
         Route::get('index', 'index')->name('index');
         Route::get('create', 'create')->name('create');
@@ -64,6 +66,8 @@ Route::prefix('admin')->name('admin.')->middleware(AdminMiddleware::class)->grou
         Route::post('update/{id}', 'update')->name('update');
         Route::get('destroy/{id}', 'destroy')->name('destroy');
     });
+    
+    Route::post('/upload-image', [ImageController::class, 'upload'])->name('image.upload');
 
     // Route::prefix('social_post')->name('social_post.')->controller(SocialPostController::class)->group(function () {
     //     Route::get('index', 'index')->name('index');

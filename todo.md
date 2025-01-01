@@ -8,7 +8,7 @@ ADMIN:
 - quan ly quoc tich
 - quan ly cap do -> DONE
 - quan ly danh muc -> DONE
-- quan ly bai hoc
+- quan ly bai hoc -> DONE
 - quan ly mang xa hoi
 - dashboard
 CLIENT:
