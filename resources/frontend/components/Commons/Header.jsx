@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Header(options) {
+    const [nationals, setNationals] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        fetch('http://127.0.0.1:8000/api/get-nationals')
+            .then((response) => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setNationals(data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setError(error);
+                setLoading(false);
+            });
+    }, [])
+
     return (
         <>
             <div id="sticky-header" className="lavewell_nav_manu style-2">
@@ -46,30 +66,15 @@ export default function Header(options) {
                                             Learn Caligraphy
                                         </a>
                                         <ul className="sub-menu">
-                                            <li>
-                                                <Link
-                                                    to="/blog"
-                                                    className="cursor-scale"
-                                                >
-                                                    Viet Nam
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    to="/blog"
-                                                    className="cursor-scale"
-                                                >
-                                                    China
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    to="/blog"
-                                                    className="cursor-scale"
-                                                >
-                                                    India
-                                                </Link>
-                                            </li>
+                                            {
+                                                nationals.map((national) => (
+                                                    <li key={national.id}>
+                                                        <Link to={`/blog/${national.slug}`} className="cursor-scale">
+                                                         {national.name}
+                                                        </Link>
+                                                    </li>
+                                                ))
+                                            }
                                         </ul>
                                     </li>
                                     <li>

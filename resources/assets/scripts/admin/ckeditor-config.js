@@ -147,7 +147,10 @@ class MyUploadAdapter {
       'indent'
     ],
     //Tích hợp plugin MyCustomUploadAdapterPlugin để CKEditor sử dụng adapter tùy chỉnh.
-    extraPlugins: [MyCustomUploadAdapterPlugin]
+    extraPlugins: [MyCustomUploadAdapterPlugin],
+    mediaEmbed: {
+      provider: 'youtube',
+    }
   } )
   .then( editor => {
     window.editor = editor;

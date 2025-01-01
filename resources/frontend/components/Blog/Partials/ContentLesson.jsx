@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 export default function ContentLesson() {
+  const [lesson, setLesson] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/get-lesson/bai-hoc-1')
+      .then(response => response.json()) //Chuyển đổi phản hồi từ API sang định dạng JSON.
+      .then(data => {
+        setLesson(data) //Cập nhật state lesson với dữ liệu từ API.
+        setLoading(false) //Đặt trạng thái tải về false khi hoàn thành (dù thành công hay thất bại).
+      })
+      .catch(error => {
+        console.error('Error:', error)
+        setLoading(false)
+      });
+  }, [])
   return (
     <>
       <div className="blog-details-area">
@@ -13,7 +27,7 @@ export default function ContentLesson() {
                   <h5>POST NEWS</h5>
                 </div>
                 <div className="section-main-title cursor-scale">
-                  <h1>Caligraphy</h1>
+                  <h1>{ lesson.title }</h1>
                 </div>
               </div>
             </div>
@@ -23,7 +37,7 @@ export default function ContentLesson() {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="blog-details-thumb">
-                    <img src="theme/images/inner/blog-details-thu.jpg" alt="thumb" />
+                    <img src="{ lesson.thumbnail }" alt="thumb" />
                   </div>
                   <div className="blog-details-content">
                     <div className="meta-blog">
@@ -36,74 +50,8 @@ export default function ContentLesson() {
                         02 Comments
                       </span>
                     </div>
-                    <h4 className="blog-details-title">Couple's wedding turns emotional</h4>
-                    <p className="blog-details-desc">
-                      Mauris non dignissim purus, ac commodo diam. Donec sit amet lacinia
-                      nulla. Aliquam quis purus in justo pulvinar tempor. Aliquam tellus
-                      nulla, sollicitudin at euismod nec, feugiat at nisi. Quisque vitae
-                      odio nec lacus interdum tempus. Phasellus a rhoncus erat. Vivamus vel
-                      eros vitae est aliquet pellentesque vitae et nunc. Sed vitae leo vitae
-                      nisl pellentesque semper.
-                    </p>
-                    <p className="blog-details-desc">
-                      Mauris non dignissim purus, ac commodo diam. Donec sit amet lacinia
-                      nulla. Aliquam quis purus in justo pulvinar tempor. Aliquam tellus
-                      nulla, sollicitudin at euismod nec, feugiat at nisi. Quisque vitae
-                      odio nec lacus interdum tempus. Phasellus a rhoncus erat. Vivamus vel
-                      eros vitae est aliquet pellentesque vitae et nunc. Sed vitae leo vitae
-                      nisl pellentesque semper.
-                    </p>
-                    <p className="blog-details-desc">
-                      Mauris non dignissim purus, ac commodo diam. Donec sit amet lacinia
-                      nulla. Aliquam quis purus in justo pulvinar tempor. Aliquam tellus
-                      nulla, sollicitudin at euismod nec, feugiat at nisi. Quisque vitae
-                      odio nec lacus interdum tempus. Phasellus a rhoncus erat. Vivamus vel
-                      eros vitae est aliquet pellentesque vitae et nunc. Sed vitae leo vitae
-                      nisl pellentesque semper.
-                    </p>
-                    <div className="blog-details-author-talk">
-                      <div className="blog-details-quote">
-                        <i className="fa-solid fa-quote-right" />
-                      </div>
-                      <div className="blog-details-author-title">
-                        <p>
-                          Combined with a handful of model sentence structures, generate
-                          Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is
-                          therefore always free from repetition, injected humour, or
-                          non-characteristic words etc.
-                        </p>
-                        <span>CEO &amp; Founder</span>
-                      </div>
-                    </div>
-                    <h3 className="blog-details-title">Our Begin Now To Beingonl</h3>
-                    <p className="blog-details-desc two">
-                      I must explain to you how all this mistaken idea of denouncing
-                      pleasure and praising pain was born and I will give you a complete
-                      account of the system, and expound the actual teachings of the great
-                      explorer of the truth, the master-builder of human happiness. No one
-                      rejects, dislikes, or avoids pleasure itself,
-                    </p>
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6">
-                        <div className="blog-details-thumb two">
-                          <img src="theme/images/inner/blog-det-thu.jpg" alt="img" />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="blog-details-thumb">
-                          <img src="theme/images/inner/blog-det-thu2.jpg" alt="img" />
-                        </div>
-                      </div>
-                    </div>
-                    <h3 className="blog-details-title two">
-                      Arcu At Mauris Facilisis Fermentum
-                    </h3>
-                    <p className="blog-details-desc three">
-                      Progressively target highly efficient business for distributed
-                      interfaces. Globally evisculate pand networks rather than viral
-                      collaboration and idea-sharing. Continually utilize turnkey networks
-                      via productize intuitive information whereas
-                    </p>
+                    <h4 className="blog-details-title">{ lesson.title }</h4>
+                  <div dangerouslySetInnerHTML={{ __html: lesson.content }} />  {/* Thuộc tính dangerouslySetInnerHTML là một cách để chèn trực tiếp nội dung HTML vào DOM trong React. */}
                   </div>
                   <div className="blog-details-socila-box">
                     <div className="row align-items-center">

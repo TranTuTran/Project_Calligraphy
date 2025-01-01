@@ -3622,6 +3622,10 @@ span.mate-comment i {
     border: 1px solid #2222;
 }
 
+.blog-details-content img{
+    max-width: 100% !important;
+}
+
 .blog-details-area .meta-blog span {
     display: inline-block;
     margin-right: 28px;

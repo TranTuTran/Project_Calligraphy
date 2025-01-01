@@ -7,8 +7,8 @@ use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\Logout;
+use App\Http\Controllers\Client\HomeController;
 use App\Http\Middleware\AdminMiddleware;
-use App\Models\Level;
 use Illuminate\Support\Facades\Route;
 
 Route::get('admin/login', [LoginController::class, 'loginPage'])->name('admin.login-page');
@@ -48,16 +48,6 @@ Route::prefix('admin')->name('admin.')->middleware(AdminMiddleware::class)->grou
         // Route::get('destroy/{id}', 'destroy')->name('destroy');
     });
 
-    Route::prefix('level')->name('level.')->controller(LevelController::class)->group(function () {
-        Route::get('index', 'index')->name('index');
-        Route::get('create', 'create')->name('create');
-        Route::post('store', 'store')->name('store');
-        Route::get('edit/{id}', 'edit')->name('edit');
-        Route::post('update/{id}', 'update')->name('update');
-        // Route::get('destroy/{id}', 'destroy')->name('destroy');
-    });
-
-
     Route::prefix('lesson')->name('lesson.')->controller(LessonController::class)->group(function () {
         Route::get('index', 'index')->name('index');
         Route::get('create', 'create')->name('create');
@@ -67,55 +57,21 @@ Route::prefix('admin')->name('admin.')->middleware(AdminMiddleware::class)->grou
         Route::get('destroy/{id}', 'destroy')->name('destroy');
     });
     
+    Route::prefix('level')->name('level.')->controller(LevelController::class)->group(function () {
+        Route::get('index', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('edit/{id}', 'edit')->name('edit');
+        Route::post('update/{id}', 'update')->name('update');
+        // Route::get('destroy/{id}', 'destroy')->name('destroy');
+    });
     Route::post('/upload-image', [ImageController::class, 'upload'])->name('image.upload');
+});
 
-    // Route::prefix('social_post')->name('social_post.')->controller(SocialPostController::class)->group(function () {
-    //     Route::get('index', 'index')->name('index');
-    //     Route::get('create', 'create')->name('create');
-    //     Route::post('store', 'store')->name('store');
-    //     Route::get('edit/{id}', 'edit')->name('edit');
-    //     Route::post('update/{id}', 'update')->name('update');
-    //     Route::get('destroy/{id}', 'destroy')->name('destroy');
-    //     Route::post('update-status', [SocialPostController::class, 'updateStatus']);
-    // });
-
-    // Route::prefix('social_post_comment')->name('social_post_comment.')->controller(SocialPostCommentController::class)->group(function () {
-    //     Route::get('index', 'index')->name('index');
-    //     Route::get('create', 'create')->name('create');
-    //     Route::post('store', 'store')->name('store');
-    //     Route::get('edit/{id}', 'edit')->name('edit');
-    //     Route::post('update/{id}', 'update')->name('update');
-    //     Route::get('destroy/{id}', 'destroy')->name('destroy');
-    // });
-
-    // Route::prefix('social_post_like')->name('social_post_like.')->controller(SocialPostLikeController::class)->group(function () {
-    //     Route::get('index', 'index')->name('index');
-    //     Route::get('create', 'create')->name('create');
-    //     Route::post('store', 'store')->name('store');
-    //     Route::get('edit/{id}', 'edit')->name('edit');
-    //     Route::post('update/{id}', 'update')->name('update');
-    //     Route::get('destroy/{id}', 'destroy')->name('destroy');
-    // });
-
-    // Route::prefix('lesson_history')->name('lesson_history.')->controller(LessonHistoryController::class)->group(function () {
-    //     Route::get('index', 'index')->name('index');
-    //     Route::get('create', 'create')->name('create');
-    //     Route::post('store', 'store')->name('store');
-    //     Route::get('edit/{id}', 'edit')->name('edit');
-    //     Route::post('update/{id}', 'update')->name('update');
-    //     Route::get('destroy/{id}', 'destroy')->name('destroy');
-    // });
-
-    // Route::prefix('profile')->name('profile.')->controller(ProfileController::class)->group(function () {
-    //     Route::get('index', 'index')->name('index');
-    //     Route::get('create', 'create')->name('create');
-    //     Route::post('store', 'store')->name('store');
-    //     Route::get('edit/{id}', 'edit')->name('edit');
-    //     Route::post('update/{id}', 'update')->name('update');
-    //     Route::get('destroy/{id}', 'destroy')->name('destroy');
-    // });
-
-
+Route::prefix('api')->group(function () {
+    Route::get('/get-categories', [HomeController::class, 'getCategories']);
+    Route::get('/get-nationals', [HomeController::class, 'getNationals']);
+    Route::get('/get-lesson/{slug}', [HomeController::class, 'getLessonData']);
 });
 
 Route::get('/{any}', function(){

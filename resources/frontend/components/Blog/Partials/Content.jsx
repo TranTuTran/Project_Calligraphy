@@ -135,7 +135,7 @@ export default function Content() {
                     </div>
                     <div className="sidber-widget-recent-post">
                       <div className="recent-widget-thumb">
-                        <img src="theme/images/inner/recent-post2.png" alt="" />
+                        <img src="/theme/images/inner/recent-post2.png" alt="" />
                       </div>
                       <div className="recent-widget-content">
                         <a href="blog-details.html">
@@ -146,7 +146,7 @@ export default function Content() {
                     </div>
                     <div className="sidber-widget-recent-post">
                       <div className="recent-widget-thumb">
-                        <img src="theme/images/inner/recent-post3.png" alt="" />
+                        <img src="/theme/images/inner/recent-post3.png" alt="" />
                       </div>
                       <div className="recent-widget-content">
                         <a href="blog-details.html">
