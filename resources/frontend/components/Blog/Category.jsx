@@ -1,6 +1,6 @@
 import React from 'react';
 import BreadCrumb from './Partials/Breadcrumb';
-import Header from '../Commons/Header';
+import Header from '../commons/Header';
 import Footer from '../Commons/Footer';
 import Content from './Partials/Content';
 

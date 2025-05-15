@@ -84,7 +84,7 @@ export default function Header(options) {
                                         <ul className="sub-menu">
                                             <li>
                                                 <Link
-                                                    to="/profile"
+                                                    to="/user/profile"
                                                     className="cursor-scale"
                                                 >
                                                     Profile
@@ -92,7 +92,7 @@ export default function Header(options) {
                                             </li>
                                             <li>
                                                 <Link
-                                                    to="/practice"
+                                                    to="/user/practice"
                                                     className="cursor-scale"
                                                 >
                                                     Practice
@@ -112,8 +112,8 @@ export default function Header(options) {
                             </nav>
                         </div>
                         <div className="col-lg-2">
-                            <div class="header-btn">
-                                <a href="/logout">Logout</a>
+                            <div className="header-btn">
+                                <a href="/user/login">Login</a>
                             </div>
                         </div>
                     </div>
